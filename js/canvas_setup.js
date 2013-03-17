@@ -1,32 +1,29 @@
 function setupCanvas() {
-	var canvas, context;
+	var canvas, context, input_fields;
 	
 	canvas = document.getElementById('canvas_playground');
 	if (canvas.getContext) {
 		context = canvas.getContext('2d');
+		
+		input_fields = $("#input_fields");
+		
 		context.beginPath();
 		
+		// Line
 		$("#line").click(function() {
-			addLineForm(context);
+			addLineForm(input_fields, context);
 		});
-		$("#arc").click(function() {
-			drawArc();
-		});
-		$("#rectangle").click(function() {
-			drawRectangle();
-		});
+
+		// Quadratic curve
 		$("#quadratic_curve").click(function() {
-			drawQuadraticCurve();
+			drawQuadraticCurve(input_fields, context);
 		});
+		
+		// Bezier curve
 		$("#bezier_curve").click(function() {
-			drawBezierCurve();
+			drawBezierCurve(input_fields, context);
 		});
-		
-		$("#code_button").click(function() {
-			$("#canvas_code").css("display", "block");
-		});
-		
 	} else {
-		alert ("canvas not supported");
+		alert ("canvas is not supported");
 	}
 }
