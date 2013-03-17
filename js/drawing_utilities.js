@@ -6,8 +6,13 @@ draw_button_text = "Draw";
 save_button_text = "Save";
 
 // Convert canvas code from html to js and draw
-function codeFromHtmlToJs(context, html_display_code) {
-	var js_code = html_display_code.replace(/<br\/>/g, '');
+function codeFromHtmlToJs(context, html_display_code, save_flag) {
+	var js_code = "";
+	if (save_flag == 1) {
+		js_code = "context.clearRect(0,0, 500, 500);" 
+			+ "context.beginPath();";		
+	}
+	js_code += html_display_code.replace(/<br\/>/g, '');
 	eval(js_code);	
 }
 // adds new piece of code to existing saved code, clears the canvas
@@ -17,10 +22,9 @@ function saveCode(input_fields, context, add_code) {
 	
 	code_field = $("#canvas_code");
 	
-	context.clearRect(0,0, 500, 500);
 	code_field.append(add_code);
 	full_code_html = code_field.text();
-	codeFromHtmlToJs(context, full_code_html);
+	codeFromHtmlToJs(context, full_code_html, 1);
 	input_fields.empty();	
 	code_field.css("display", "inline");
 }
@@ -58,7 +62,8 @@ function getInputValues (input_name_array) {
 	
 	if (input_name_array.length > 0) {	
 		for (var i=0; i < input_name_array.length; i++) {
-			input_values_array[i] = parseInt($("#"+input_name_array[i]).val());
+			input_values_array[input_name_array[i]] = 
+				parseInt($("#"+input_name_array[i]).val());
 		}
 	}
 	
@@ -67,11 +72,16 @@ function getInputValues (input_name_array) {
 
 // Add button to save code for the latest addition (if there isn't one)
 // Save the new addition to the code
-function addFieldForSavingCode (input_fields, context, code_html) {
-	if ($("#"+save_button_id).length === 0 ) {
-		addButtonToInputForm(input_fields, save_button_id, save_button_text)
-		$("#"+save_button_id).click(function () {
-			saveCode(input_fields, context, code_html)
-		});	// save button click function		
-	}		
+function addFieldForSavingCode (input_fields, context,code_html) {
+	if ($("#"+save_button_id).length != 0 )
+	{
+		// $("#"+save_button_id).parent().removeChild($("#"+save_button_id));
+		$("#"+save_button_id).remove();
+	}
+	 
+	addButtonToInputForm(input_fields, save_button_id, save_button_text)
+	$("#"+save_button_id).click(function () {
+		saveCode(input_fields, context, code_html)
+	});	// save button click function		
+			
 }
