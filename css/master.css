@@ -1,0 +1,23 @@
+#index {
+  background-color: #00698c;
+  color: white; }
+  #index #input_fields {
+    position: fixed;
+    top: 100px;
+    left: 50px; }
+  #index canvas {
+    position: fixed;
+    top: 100px;
+    left: 600px;
+    border: 1px solid #999999;
+    background-color: white; }
+  #index #canvas_code {
+    position: fixed;
+    background-color: black;
+    color: yellow;
+    top: 600px;
+    left: 50px;
+    width: 500px;
+    border: 1px solid #999999;
+    height: 100%;
+    font: 75% "Courier New", Courier, monospace; }

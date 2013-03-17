@@ -1,0 +1,34 @@
+$x_offset: 600px;
+$y_offset: 100px;
+
+#index {
+	background-color: #00698c;
+	color: white;
+	
+	#input_fields {
+		position: fixed;
+		top: 100px;
+		left: 50px;
+	}
+	
+	
+	canvas {
+		position: fixed;
+		top: $y_offset;
+		left: $x_offset;
+		border: 1px solid #999;
+		background-color: white;
+	}
+	
+	#canvas_code {
+		position: fixed;
+		background-color: black;
+		color: yellow;
+		top: 600px;
+		left: 50px;
+		width: 500px;
+		border: 1px solid #999;
+		height: 100%;
+		font: 100% "Courier New", Courier, monospace;
+	}
+}
