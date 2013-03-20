@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+		<meta name="description" content="Draw using canvas">
+		<meta name="author" content="BumbleBoks">
+		<title>Canvas Playground</title>
+	
+		<link rel="stylesheet" href="../css/master.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		<script src="../lib/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/drawing_utilities.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/canvas_utilities.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/canvas_input.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/canvas_setup.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/canvas_start.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../test/test_script.js" type="text/javascript" charset="utf-8"></script></head>
+
+	<body id="index" onload="runTests()">
+		<h3>Draw on canvas</h3>
+		<canvas id="canvas_playground" width="500" height="500"></canvas>
+
+		<div id="input">
+			<button id="line"> Line </button>
+			<button id="quadratic_curve"> Quadratic Curve </button>
+			<button id="bezier_curve"> Bezier Curve </button>			
+		</div>
+				
+		<div id="input_fields"></div>
+
+		<div id="canvas_code"></div>
+		
+	</body>
+</html>

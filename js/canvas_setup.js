@@ -11,7 +11,7 @@ function setupCanvas() {
 		
 		// Line
 		$("#line").click(function() {
-			addLineForm(input_fields, context);
+			drawLine(input_fields, context);
 		});
 
 		// Quadratic curve

@@ -1,5 +1,5 @@
 // Add fields to enter input required for drawing line in canvas
-function addLineForm (input_fields, context) {
+function drawLine (input_fields, context) {
 	var input_array = ["x1", "y1", "x2", "y2"];
 	var input_value_array, code_html;
 		
