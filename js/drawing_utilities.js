@@ -17,7 +17,7 @@ function codeFromHtmlToJs(context, html_display_code, save_flag) {
 }
 // adds new piece of code to existing saved code, clears the canvas
 // and redraws using the newly saved code
-function saveCode(input_fields, context, add_code) {
+function saveCode(context, add_code) {
 	var full_code_html, code_field;
 	
 	code_field = $("#canvas_code");
@@ -25,7 +25,6 @@ function saveCode(input_fields, context, add_code) {
 	code_field.append(add_code);
 	full_code_html = code_field.text();
 	codeFromHtmlToJs(context, full_code_html, 1);
-	input_fields.empty();	
 	code_field.css("display", "inline");
 }
 
@@ -81,7 +80,8 @@ function addFieldForSavingCode (input_fields, context,code_html) {
 	 
 	addButtonToInputForm(input_fields, save_button_id, save_button_text)
 	$("#"+save_button_id).click(function () {
-		saveCode(input_fields, context, code_html)
+		saveCode(context, code_html)
+		input_fields.empty();
 	});	// save button click function		
 			
 }

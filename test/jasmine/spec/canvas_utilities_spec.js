@@ -26,7 +26,6 @@ describe ("Canvas code for", function() {
 				
 	});
 
-
 	describe("drawing quadratic curves", function() {
 		var test_input, code_html;
 		
@@ -88,5 +87,31 @@ describe ("Canvas code for", function() {
 		});
 				
 	});
+
+	describe("drawing arc", function() {
+		var test_input, code_html;
+		
+		beforeEach(function() {
+			test_input = {
+				"x": 300,
+				"y": 200,
+				"r": 50,
+				"start_deg": 60,
+				"end_deg": 120,
+				"anticlockwise_bool": 0
+			};
+			code_html = canvasCodeForArc(test_input);			
+		});
+		
+		it ("should contain arc", function() {
+			expect(code_html).toContain("context.arc(300,200,50,60*Math.PI/180,120*Math.PI/180,0)");
+		});
+		
+		it ("should contain stroke", function() {
+			expect(code_html).toContain("context.stroke()");
+		});
+		
+	});
+
 
 });

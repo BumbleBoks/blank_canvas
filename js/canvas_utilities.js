@@ -36,3 +36,19 @@ function canvasCodeForBezierCurve (value_array) {
 		
 	return canvas_code;
 }
+
+// canvas code for drawing arc for display
+function canvasCodeForArc (value_array) {
+	// TODO: reduce the fraction (angle/180) 
+	var start_rad_text = value_array["start_deg"] +"*Math.PI/180";
+	var end_rad_text = value_array["end_deg"] +"*Math.PI/180";
+	
+	
+	var canvas_code = 'context.arc(' + value_array["x"] + ',' 
+		+ value_array["y"] + ',' + value_array["r"] + ',' 
+		+ start_rad_text + ',' + end_rad_text + ',' 
+		+ value_array["anticlockwise_bool"] + ');<br/> \
+		context.stroke();<br/>';
+		
+	return canvas_code;
+}

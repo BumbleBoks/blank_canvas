@@ -5,11 +5,21 @@
     position: fixed;
     top: 100px;
     left: 50px; }
+  #index #refresh_canvas {
+    position: fixed;
+    top: 30px;
+    left: 750px;
+    background-color: gray;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 200px;
+    height: 50px; }
   #index canvas {
     position: fixed;
     top: 100px;
     left: 600px;
-    border: 1px solid #999999;
+    border: 1px solid #999;
     background-color: white; }
   #index #canvas_code {
     position: fixed;
@@ -18,7 +28,7 @@
     top: 200px;
     left: 50px;
     width: 500px;
-    border: 1px solid #999999;
+    border: 1px solid #999;
     height: 400px;
     font: 100% "Courier New", Courier, monospace;
     overflow: scroll; }

@@ -3,7 +3,6 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 		<meta name="description" content="Draw using canvas">
-		<meta name="author" content="BumbleBoks">
 		<title>Canvas Playground</title>
 	
 		<link rel="stylesheet" href="../css/master.css" type="text/css" media="screen" title="no title" charset="utf-8">
@@ -17,12 +16,14 @@
 
 	<body id="index" onload="runTests()">
 		<h3>Draw on canvas</h3>
+		<button id="refresh_canvas">Start with fresh canvas</button>
 		<canvas id="canvas_playground" width="500" height="500"></canvas>
 
 		<div id="input">
 			<button id="line"> Line </button>
 			<button id="quadratic_curve"> Quadratic Curve </button>
 			<button id="bezier_curve"> Bezier Curve </button>			
+			<button id="arc"> Arc </button>			
 		</div>
 				
 		<div id="input_fields"></div>
