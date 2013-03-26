@@ -47,6 +47,12 @@ function enterArcForm (x, y, r, start_deg, end_deg, anticlockwise_bool) {
 	$("#anticlockwise_bool").val(anticlockwise_bool);
 }
 
+function enterRectForm (x, y, width, height) {
+	$("#x").val(x);
+	$("#y").val(y);
+	$("#width").val(width);
+	$("#height").val(height);
+}
 
 function lineButtonClickTest(output) {
 	output = setTestCase(output);
@@ -189,7 +195,7 @@ function bezierCurveButtonClickTest(output) {
 	
 }
 
-function arcCurveButtonClickTest(output) {
+function arcButtonClickTest(output) {
 	output = setTestCase(output);
 	output += outputMsgAsLine("Clicking arc button");
 
@@ -228,6 +234,48 @@ function arcCurveButtonClickTest(output) {
 	}
 	else {
 		output += outputMsgAsLine("code for drawing arc is generated")
+	}		
+	
+	return output;
+	
+}
+
+function rectButtonClickTest(output) {
+	output = setTestCase(output);
+	output += outputMsgAsLine("Clicking rect button");
+
+	$("#rect").click();
+	if (($("#x")[0] === undefined) || ($("#y")[0] === undefined )
+		|| ($("#width")[0] === undefined) || ($("#height")[0] === undefined) ) {
+			output += outputMsgAsLine("TEST FAILED: Rect click failed - no input fields"); 
+			return output;
+	} else {
+		output += outputMsgAsLine("Rect click produces form input fields");
+	}
+	if (($(":contains('x')").length === 0) 
+		|| ($(":contains('y')").length === 0) 
+		|| ($(":contains('width')").length === 0) 
+		|| ($(":contains('height')").length === 0)) {
+			output += outputMsgAsLine("TEST FAILED: Rect click failed - no labels");
+			return output;
+	} else {
+		output += outputMsgAsLine("Rect click produces form input labels");
+	} 
+	
+	enterRectForm(300, 100, 100, 150);
+	
+	$("#draw").click();
+	$("#save").click();
+	
+	var htmlText = $("#canvas_code").text();
+	var rectText = "strokeRect(300,100,100,150);"
+	
+	if (htmlText.indexOf(rectText) == -1) {
+		output += outputMsgAsLine("TEST FAILED: correct code for drawing rect is not generated");
+		return output;
+	}
+	else {
+		output += outputMsgAsLine("code for drawing rect is generated");
 	}		
 	
 	return output;
@@ -324,7 +372,8 @@ function runTests() {
 	output = lineButtonClickTest(output);
 	output = quadraticCurveButtonClickTest(output);
 	output = bezierCurveButtonClickTest(output);
-	output = arcCurveButtonClickTest(output);
+	output = arcButtonClickTest(output);
+	output = rectButtonClickTest(output);
 	output = pathRedrawSaveTest(output);	
 	output = pathSaveResaveTest(output);
 	

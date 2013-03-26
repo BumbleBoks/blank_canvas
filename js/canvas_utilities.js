@@ -52,3 +52,13 @@ function canvasCodeForArc (value_array) {
 		
 	return canvas_code;
 }
+
+// canvas code for drawing rectangle for display
+function canvasCodeForRect (value_array) {
+	var canvas_code = 'context.strokeStyle = "rgba(0,0,0,1)";<br/> \
+		context.strokeRect(' + value_array["x"] + ',' 
+		+ value_array["y"] + ',' + value_array["width"] + ','
+		+ value_array["height"] + ');<br/>';
+	
+	return canvas_code;
+}

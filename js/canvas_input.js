@@ -29,6 +29,10 @@ function drawPath(pathname, input_array, input_fields, context)
 			code_html = canvasCodeForArc(input_value_array);
 			break;
 			
+		case "rect":
+			code_html = canvasCodeForRect(input_value_array);
+			break;
+			
 		default:
 			console.log("path name not supported");
 			break;

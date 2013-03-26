@@ -35,10 +35,16 @@ function setupCanvas() {
 			drawPath("bezier_curve", input_array, input_fields, context);
 		});
 
-		// Bezier curve
+		// Arc
 		$("#arc").click(function() {
 			var input_array = ["x", "y", "r", "start_deg", "end_deg", "anticlockwise_bool"];
 			drawPath("arc", input_array, input_fields, context);
+		});
+		
+		// Rect
+		$("#rect").click(function() {
+			var input_array = ["x", "y", "width", "height"];
+			drawPath("rect", input_array, input_fields, context);
 		});
 
 	} else {

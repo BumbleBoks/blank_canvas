@@ -113,5 +113,22 @@ describe ("Canvas code for", function() {
 		
 	});
 
+	describe("drawing rect", function() {
+		var test_input, code_html;
+		
+		beforeEach(function() {
+			test_input = {
+				"x": 250,
+				"y": 150,
+				"width": 200,
+				"height": 100
+			};
+			code_html = canvasCodeForRect(test_input);
+		});
+		
+		it ("should contain strokeRect", function() {
+			expect(code_html).toContain("context.strokeRect(250,150,200,100)");
+		});
+	});
 
 });
