@@ -1,6 +1,7 @@
 describe ("Canvas code for", function() {
 	describe("drawing lines", function() {
 		var test_input, code_html;
+		var options = [];
 		
 		beforeEach(function() {
 			test_input = {
@@ -9,25 +10,51 @@ describe ("Canvas code for", function() {
 				"x2": 300,
 				"y2": 400
 			};
-			code_html = canvasCodeForLine(test_input);			
 		});
 		
-		it ("should contain moveTo", function() {
-			expect(code_html).toContain("context.moveTo(100,200)");
+		describe ("using stroke", function() {
+			beforeEach(function() {
+				options["stroke"] = true;
+				code_html = canvasCodeForLine(test_input, options);							
+			});
+			
+			it ("should contain moveTo", function() {
+				expect(code_html).toContain("context.moveTo(100,200)");
+			});
+
+			it ("should contain LineTo", function() {
+				expect(code_html).toContain("context.lineTo(300,400)");
+			});
+
+			it ("should contain stroke", function() {
+				expect(code_html).toContain("context.stroke()");
+			});
 		});
 		
-		it ("should contain LineTo", function() {
-			expect(code_html).toContain("context.lineTo(300,400)");
-		});
-		
-		it ("should contain stroke", function() {
-			expect(code_html).toContain("context.stroke()");
+		describe ("using fill", function() {
+			beforeEach(function() {
+				options["stroke"] = false;
+				code_html = canvasCodeForLine(test_input, options);							
+			});
+			
+			it ("should contain moveTo", function() {
+				expect(code_html).toContain("context.moveTo(100,200)");
+			});
+
+			it ("should contain LineTo", function() {
+				expect(code_html).toContain("context.lineTo(300,400)");
+			});
+
+			it ("should contain fill", function() {
+				expect(code_html).toContain("context.fill()");
+			});
 		});
 				
 	});
 
 	describe("drawing quadratic curves", function() {
 		var test_input, code_html;
+		var options = [];
 		
 		beforeEach(function() {
 			test_input = {
@@ -38,26 +65,53 @@ describe ("Canvas code for", function() {
 				"x2": 300,
 				"y2": 400
 			};
-			code_html = canvasCodeForQuadraticCurve(test_input);			
 		});
 		
-		it ("should contain moveTo", function() {
-			expect(code_html).toContain("context.moveTo(100,200)");
+		describe ("using stroke", function() {
+			beforeEach(function() {
+				options["stroke"] = true;
+				code_html = canvasCodeForQuadraticCurve(test_input, options);							
+			});
+
+			it ("should contain moveTo", function() {
+				expect(code_html).toContain("context.moveTo(100,200)");
+			});
+
+			it ("should contain quadraticCurveTo", function() {
+				expect(code_html).toContain(
+					"context.quadraticCurveTo(125,150,300,400)");
+			});
+
+			it ("should contain stroke", function() {
+				expect(code_html).toContain("context.stroke()");
+			});
 		});
 		
-		it ("should contain LineTo", function() {
-			expect(code_html).toContain(
-				"context.quadraticCurveTo(125,150,300,400)");
-		});
-		
-		it ("should contain stroke", function() {
-			expect(code_html).toContain("context.stroke()");
-		});
+		describe ("using fill", function() {
+			beforeEach(function() {
+				options["stroke"] = false;
+				code_html = canvasCodeForQuadraticCurve(test_input, options);							
+			});
+
+			it ("should contain moveTo", function() {
+				expect(code_html).toContain("context.moveTo(100,200)");
+			});
+
+			it ("should contain quadraticCurveTo", function() {
+				expect(code_html).toContain(
+					"context.quadraticCurveTo(125,150,300,400)");
+			});
+
+			it ("should contain fill", function() {
+				expect(code_html).toContain("context.fill()");
+			});
+		});		
 				
 	});
 
 	describe("drawing bezier curves", function() {
 		var test_input, code_html;
+		var options = [];
 		
 		beforeEach(function() {
 			test_input = {
@@ -70,26 +124,53 @@ describe ("Canvas code for", function() {
 				"x2": 300,
 				"y2": 400
 			};
-			code_html = canvasCodeForBezierCurve(test_input);			
 		});
 		
-		it ("should contain moveTo", function() {
-			expect(code_html).toContain("context.moveTo(100,200)");
+		describe ("using stroke", function() {
+			beforeEach(function() {
+				options["stroke"] = true;
+				code_html = canvasCodeForBezierCurve(test_input, options);							
+			});
+			
+			it ("should contain moveTo", function() {
+				expect(code_html).toContain("context.moveTo(100,200)");
+			});
+
+			it ("should contain bezierCurveTo", function() {
+				expect(code_html).toContain(
+					"context.bezierCurveTo(125,150,200,225,300,400)");
+			});
+
+			it ("should contain stroke", function() {
+				expect(code_html).toContain("context.stroke()");
+			});			
 		});
 		
-		it ("should contain LineTo", function() {
-			expect(code_html).toContain(
-				"context.bezierCurveTo(125,150,200,225,300,400)");
-		});
-		
-		it ("should contain stroke", function() {
-			expect(code_html).toContain("context.stroke()");
-		});
+		describe ("using fill", function() {
+			beforeEach(function() {
+				options["stroke"] = false;
+				code_html = canvasCodeForBezierCurve(test_input, options);							
+			});
+			
+			it ("should contain moveTo", function() {
+				expect(code_html).toContain("context.moveTo(100,200)");
+			});
+
+			it ("should contain bezierCurveTo", function() {
+				expect(code_html).toContain(
+					"context.bezierCurveTo(125,150,200,225,300,400)");
+			});
+
+			it ("should contain fill", function() {
+				expect(code_html).toContain("context.fill()");
+			});			
+		});		
 				
 	});
 
 	describe("drawing arc", function() {
 		var test_input, code_html;
+		var options = [];
 		
 		beforeEach(function() {
 			test_input = {
@@ -100,21 +181,41 @@ describe ("Canvas code for", function() {
 				"end_deg": 120,
 				"anticlockwise_bool": 0
 			};
-			code_html = canvasCodeForArc(test_input);			
 		});
 		
-		it ("should contain arc", function() {
-			expect(code_html).toContain("context.arc(300,200,50,60*Math.PI/180,120*Math.PI/180,0)");
+		describe ("using stroke", function() {
+			beforeEach(function() {
+				options["stroke"] = true;
+				code_html = canvasCodeForArc(test_input, options);							
+			});
+			it ("should contain arc", function() {
+				expect(code_html).toContain("context.arc(300,200,50,60*Math.PI/180,120*Math.PI/180,0)");
+			});
+
+			it ("should contain stroke", function() {
+				expect(code_html).toContain("context.stroke()");
+			});
 		});
 		
-		it ("should contain stroke", function() {
-			expect(code_html).toContain("context.stroke()");
+		describe ("using fill", function() {
+			beforeEach(function() {
+				options["stroke"] = false;
+				code_html = canvasCodeForArc(test_input, options);							
+			});
+			it ("should contain arc", function() {
+				expect(code_html).toContain("context.arc(300,200,50,60*Math.PI/180,120*Math.PI/180,0)");
+			});
+
+			it ("should contain fill", function() {
+				expect(code_html).toContain("context.fill()");
+			});
 		});
-		
+
 	});
 
 	describe("drawing rect", function() {
 		var test_input, code_html;
+		var options = [];
 		
 		beforeEach(function() {
 			test_input = {
@@ -123,12 +224,28 @@ describe ("Canvas code for", function() {
 				"width": 200,
 				"height": 100
 			};
-			code_html = canvasCodeForRect(test_input);
 		});
 		
-		it ("should contain strokeRect", function() {
-			expect(code_html).toContain("context.strokeRect(250,150,200,100)");
+		describe ("using stroke", function() {
+			beforeEach(function() {
+				options["stroke"] = true;
+				code_html = canvasCodeForRect(test_input, options);							
+			});
+			it ("should contain strokeRect", function() {
+				expect(code_html).toContain("context.strokeRect(250,150,200,100)");
+			});
 		});
+		
+		describe ("using fill", function() {
+			beforeEach(function() {
+				options["stroke"] = false;
+				code_html = canvasCodeForRect(test_input, options);							
+			});
+			it ("should contain fillRect", function() {
+				expect(code_html).toContain("context.fillRect(250,150,200,100)");
+			});
+		});		
+		
 	});
 
 });

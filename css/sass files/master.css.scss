@@ -1,16 +1,44 @@
 $x_offset: 600px;
 $y_offset: 100px;
 
+@mixin on_off_button {
+	width: 40px;
+	height: 20px;
+	border-radius: 5px;
+	border: 0;
+	padding: 0;
+	background-color: dimgray;
+	color: gray;
+	&:disabled {
+		color: lightgray;
+		background-color: navy;
+	};
+}
+
+
 #index {
 	background-color: #00698c;
 	color: white;
 	
+	#static_input_fields {
+		position: fixed;
+		top: 150px;
+		left: 50px;
+		#stroke_button {
+			@include on_off_button;
+		}
+		#fill_button {
+			@include on_off_button;
+		}
+	}
+
 	#input_fields {
 		position: fixed;
-		top: 100px;
-		left: 50px;
+		top: 200px;
+		left: 50px;		
 	}
 	
+		
 	#refresh_canvas {
 		position: fixed;
 		top: 30px;

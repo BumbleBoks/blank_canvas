@@ -301,7 +301,7 @@ function pathRedrawSaveTest(output) {
 	var notLineToText = "lineTo(500,500);"
 	if (htmlText.indexOf(notMoveToText) != -1 ||
 		htmlText.indexOf(notLineToText) != -1 ) {
-		output += "TEST FAILED: saved the code not meant to be saved"
+		output += outputMsgAsLine("TEST FAILED: saved the code not meant to be saved")
 		return output;
 	} else {
 		output += outputMsgAsLine("did not save trial code as expected");
@@ -344,7 +344,7 @@ function pathSaveResaveTest(output) {
 	var notLineToText = "lineTo(200,50);"
 	if (htmlText.indexOf(notMoveToText) == -1 ||
 		htmlText.indexOf(notLineToText) == -1 ) {
-		output += "TEST FAILED: previously saved code is not retained"
+		output += outputMsgAsLine("TEST FAILED: previously saved code is not retained")
 		return output;
 	} else {
 		output += outputMsgAsLine("retained the previously saved code");
@@ -359,11 +359,44 @@ function pathSaveResaveTest(output) {
 		return output
 	}
 	else {
-		output += "correct code was saved again"
+		output += outputMsgAsLine("correct code was saved again")
 	}		
 	
 	return output;
 	
+}
+
+function pathStrokeFillTest(output) {
+	output = setTestCase(output);
+	output += outputMsgAsLine("Choosing between stroke and fill");
+	
+	if ($("#stroke_button").prop('disabled') == false 
+		|| $("#fill_button").prop('disabled') == true) {
+		output += outputMsgAsLine("TEST FAILED: stroke/fill not initialized correctly")
+		return output;
+	} else {
+		output += outputMsgAsLine("stroke/fill initialized correctly")
+	}
+	
+	$("#fill_button").click();
+	if ($("#stroke_button").prop('disabled') == true 
+		|| $("#fill_button").prop('disabled') == false) {
+		output += outputMsgAsLine("TEST FAILED: fill option was not set")
+		return output;
+	} else {
+		output += outputMsgAsLine("fill option was correctly set")
+	}
+	
+	$("#stroke_button").click();
+	if ($("#stroke_button").prop('disabled') == false 
+		|| $("#fill_button").prop('disabled') == true) {
+		output += outputMsgAsLine("TEST FAILED: stroke option was not set")
+		return output;
+	} else {
+		output += outputMsgAsLine("stroke option was correctly set")
+	}
+	
+	return output;
 }
 
 function runTests() {
@@ -376,6 +409,7 @@ function runTests() {
 	output = rectButtonClickTest(output);
 	output = pathRedrawSaveTest(output);	
 	output = pathSaveResaveTest(output);
+	output = pathStrokeFillTest(output);
 	
 	$("body").empty()
 	$("body").append("<h1> Test Output")

@@ -47,6 +47,17 @@ function setupCanvas() {
 			drawPath("rect", input_array, input_fields, context);
 		});
 
+		// Choosing between stroke and fill options
+		$("#stroke_button").click(function() {
+			$("#stroke_button").prop('disabled', true);
+			$("#fill_button").prop('disabled', false);
+		});
+		$("#fill_button").click(function() {
+			$("#fill_button").prop('disabled', true);
+			$("#stroke_button").prop('disabled', false);
+		});
+
+
 	} else {
 		alert ("canvas is not supported");
 	}

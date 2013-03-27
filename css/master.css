@@ -1,9 +1,35 @@
 #index {
   background-color: #00698c;
   color: white; }
+  #index #static_input_fields {
+    position: fixed;
+    top: 150px;
+    left: 50px; }
+    #index #static_input_fields #stroke_button {
+      width: 40px;
+      height: 20px;
+      border-radius: 5px;
+      border: 0;
+      padding: 0;
+      background-color: dimgray;
+      color: gray; }
+      #index #static_input_fields #stroke_button:disabled {
+        color: lightgray;
+        background-color: navy; }
+    #index #static_input_fields #fill_button {
+      width: 40px;
+      height: 20px;
+      border-radius: 5px;
+      border: 0;
+      padding: 0;
+      background-color: dimgray;
+      color: gray; }
+      #index #static_input_fields #fill_button:disabled {
+        color: lightgray;
+        background-color: navy; }
   #index #input_fields {
     position: fixed;
-    top: 100px;
+    top: 200px;
     left: 50px; }
   #index #refresh_canvas {
     position: fixed;
