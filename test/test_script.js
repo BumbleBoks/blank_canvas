@@ -359,7 +359,7 @@ function pathSaveResaveTest(output) {
 		return output
 	}
 	else {
-		output += outputMsgAsLine("correct code was saved again")
+		output += outputMsgAsLine("correct code was saved again");
 	}		
 	
 	return output;
@@ -375,27 +375,101 @@ function pathStrokeFillTest(output) {
 		output += outputMsgAsLine("TEST FAILED: stroke/fill not initialized correctly")
 		return output;
 	} else {
-		output += outputMsgAsLine("stroke/fill initialized correctly")
+		output += outputMsgAsLine("stroke/fill initialized correctly");
 	}
 	
 	$("#fill_button").click();
 	if ($("#stroke_button").prop('disabled') == true 
 		|| $("#fill_button").prop('disabled') == false) {
-		output += outputMsgAsLine("TEST FAILED: fill option was not set")
+		output += outputMsgAsLine("TEST FAILED: fill option was not set");
 		return output;
 	} else {
-		output += outputMsgAsLine("fill option was correctly set")
+		output += outputMsgAsLine("fill option was correctly set");
 	}
 	
 	$("#stroke_button").click();
 	if ($("#stroke_button").prop('disabled') == false 
 		|| $("#fill_button").prop('disabled') == true) {
-		output += outputMsgAsLine("TEST FAILED: stroke option was not set")
+		output += outputMsgAsLine("TEST FAILED: stroke option was not set");
 		return output;
 	} else {
-		output += outputMsgAsLine("stroke option was correctly set")
+		output += outputMsgAsLine("stroke option was correctly set");
 	}
 	
+	return output;
+}
+
+function pickAColorTest (output) {
+	output = setTestCase(output);
+	output += outputMsgAsLine("Choosing a color");
+	
+	if ($("#color_picker_popup").css("display") != "none")
+	{
+		output += outputMsgAsLine("TEST FAILED: popup should be hidden");
+		return output;
+	} else {
+		output += outputMsgAsLine("popup is hidden");	
+	}
+	
+	$("#pick_color").click();
+
+	if ($("#color_picker_popup").css("display") == "none")
+	{
+		output += outputMsgAsLine("TEST FAILED: popup should pop up");
+		return output;
+	} else {
+		output += outputMsgAsLine("popup pops up");	
+	}
+
+	if ($("#pick_color").text() != "Use this color")
+	{
+		output += outputMsgAsLine("TEST FAILED: button text should change");
+			return output;
+		} else {
+			output += outputMsgAsLine("button text changes as expected");	
+		
+	}
+	
+	if ( $("#R").attr("placeholder") != "R" || $("#G").attr("placeholder") != "G"
+		|| $("#B").attr("placeholder") != "B" || $("#A").attr("placeholder") != "A" )
+	{
+		output += outputMsgAsLine("TEST FAILED: placeholders are not set correctly");
+		return output;
+	} else {
+		output += outputMsgAsLine("placeholders were set correctly");
+	}
+	
+	if ( $("#R").val() != 0 || $("#G").val() != 0 || $("#B").val() != 0 || $("#A").val() != 1 )
+	{
+		output += outputMsgAsLine("TEST FAILED: initial values are not set correctly");
+		return output;
+	} else {
+		output += outputMsgAsLine("initial values were set correctly");
+	}	
+	
+	$("#R").val(50);
+	$("#G").val(100);
+	$("#B").val(200);
+	$("#A").val(0.6);
+	
+	$("#pick_color").click();
+	if ($("#pick_color").text() != "Pick a color")
+	{
+		output += outputMsgAsLine("TEST FAILED: button text should change when closed");
+			return output;
+		} else {
+			output += outputMsgAsLine("button text changes when closed");	
+		
+	}
+	
+	$("#pick_color").click();
+	if ( $("#R").val() != 50 || $("#G").val() != 100 || $("#B").val() != 200 || $("#A").val() != 0.6 )
+	{
+		output += outputMsgAsLine("TEST FAILED: new values are not set correctly");
+		return output;
+	} else {
+		output += outputMsgAsLine("new values were set correctly");
+	}		
 	return output;
 }
 
@@ -410,6 +484,7 @@ function runTests() {
 	output = pathRedrawSaveTest(output);	
 	output = pathSaveResaveTest(output);
 	output = pathStrokeFillTest(output);
+	output = pickAColorTest(output);
 	
 	$("body").empty()
 	$("body").append("<h1> Test Output")

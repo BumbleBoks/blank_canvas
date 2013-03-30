@@ -1,6 +1,8 @@
 function setupCanvas() {
 	var canvas, context, input_fields;
 	
+	var current_color = makeColor(0,0,0,1);
+	
 	canvas = document.getElementById('canvas_playground');
 	if (canvas.getContext) {
 		context = canvas.getContext('2d');
@@ -57,7 +59,11 @@ function setupCanvas() {
 			$("#stroke_button").prop('disabled', false);
 		});
 
-
+		// Picking a color
+		$("#pick_color").click(function() {
+			current_color = popColorPickerPopUp(current_color);
+		});
+		
 	} else {
 		alert ("canvas is not supported");
 	}

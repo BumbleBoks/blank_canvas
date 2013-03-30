@@ -10,6 +10,7 @@
 		<script src="js/drawing_utilities.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/canvas_utilities.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/canvas_input.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/color_picker.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/canvas_setup.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/canvas_start.js" type="text/javascript" charset="utf-8"></script>
 	</head>
@@ -30,7 +31,19 @@
 		<div id="static_input_fields">
 			<button disabled id="stroke_button">Stroke</button>/
 			<button id="fill_button">Fill</button>			
+			<button id="pick_color">Pick a color</button>
+			<div id="color_picker_popup">
+				<button id="xbutton">x</button>
+				<input id = "R" placeholder = "R">
+				<input id = "G" placeholder = "G">
+				<input id = "B" placeholder = "B">
+				<input id = "A" placeholder = "A">		
+				<div id="color_sample"></div>	
+				<div id="alpha_layer">Alpha</div>
+			</div>
 		</div>		
+		
+		
 		<div id="input_fields">
 		</div>
 

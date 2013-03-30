@@ -27,10 +27,51 @@
       #index #static_input_fields #fill_button:disabled {
         color: lightgray;
         background-color: navy; }
+    #index #static_input_fields #color_picker_popup {
+      background-color: gray;
+      width: 220px;
+      height: 270px;
+      position: relative;
+      top: 0px;
+      z-index: 1;
+      display: none; }
+      #index #static_input_fields #color_picker_popup #xbutton {
+        position: relative;
+        left: 205px;
+        top: 0px;
+        width: 12px;
+        height: 12px;
+        font-size: 10px;
+        font-weight: bold;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background-color: lightgray;
+        color: gray; }
+      #index #static_input_fields #color_picker_popup input {
+        position: relative;
+        top: 20px;
+        left: -5px;
+        width: 40px; }
+      #index #static_input_fields #color_picker_popup #color_sample {
+        position: relative;
+        top: 30px;
+        left: 10px;
+        width: 200px;
+        height: 200px;
+        border: 1px solid black; }
+      #index #static_input_fields #color_picker_popup #alpha_layer {
+        z-index: -1;
+        position: relative;
+        top: -100px;
+        left: 50px;
+        color: black; }
   #index #input_fields {
     position: fixed;
     top: 200px;
-    left: 50px; }
+    left: 50px;
+    z-index: -1; }
   #index #refresh_canvas {
     position: fixed;
     top: 30px;
@@ -57,4 +98,5 @@
     border: 1px solid #999;
     height: 400px;
     font: 100% "Courier New", Courier, monospace;
-    overflow: scroll; }
+    overflow: scroll;
+    z-index: -1; }
