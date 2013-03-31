@@ -10,7 +10,6 @@ function codeFromHtmlToJs(context, html_display_code, save_flag) {
 	var js_code = "";
 	if (save_flag == 1) {
 		js_code = "context.clearRect(0,0, 500, 500);" 
-			+ "context.beginPath();";		
 	}
 	js_code += html_display_code.replace(/<br\/>/g, '');
 	eval(js_code);	
@@ -74,7 +73,6 @@ function getInputValues (input_name_array) {
 function addFieldForSavingCode (input_fields, context,code_html) {
 	if ($("#"+save_button_id).length != 0 )
 	{
-		// $("#"+save_button_id).parent().removeChild($("#"+save_button_id));
 		$("#"+save_button_id).remove();
 	}
 	 

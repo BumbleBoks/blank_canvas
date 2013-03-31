@@ -14,6 +14,7 @@ function drawPath(pathname, input_array, input_fields, context)
 		
 		// stroke button is disabled after it gets selected 
 		options["stroke"] = $("#stroke_button").prop('disabled');
+		options["color"] = $("#pick_color").data("color");
 		
 		// check for supported path names
 		switch (pathname) {
@@ -43,6 +44,7 @@ function drawPath(pathname, input_array, input_fields, context)
 
 		}
 
+		code_html = "context.beginPath();<br/>" + code_html;		 
 		codeFromHtmlToJs(context, code_html, 0);
 		
 		addFieldForSavingCode (input_fields, context, code_html)		

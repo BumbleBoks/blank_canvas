@@ -1,8 +1,7 @@
 function setupCanvas() {
 	var canvas, context, input_fields;
-	
-	var current_color = makeColor(0,0,0,1);
-	
+	$("#pick_color").data("color", makeColor(0,0,0,1));
+		
 	canvas = document.getElementById('canvas_playground');
 	if (canvas.getContext) {
 		context = canvas.getContext('2d');
@@ -39,7 +38,7 @@ function setupCanvas() {
 
 		// Arc
 		$("#arc").click(function() {
-			var input_array = ["x", "y", "r", "start_deg", "end_deg", "anticlockwise_bool"];
+			var input_array = ["x0", "y0", "xc", "yc", "r", "start_deg", "end_deg", "anticlockwise_bool"];
 			drawPath("arc", input_array, input_fields, context);
 		});
 		
@@ -61,7 +60,7 @@ function setupCanvas() {
 
 		// Picking a color
 		$("#pick_color").click(function() {
-			current_color = popColorPickerPopUp(current_color);
+			popColorPickerPopUp();			
 		});
 		
 	} else {
