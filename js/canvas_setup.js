@@ -8,11 +8,14 @@ function setupCanvas() {
 		
 		input_fields = $("#input_fields");
 		
+		context.save();
 		context.beginPath();
 		
 		$("#refresh_canvas").click(function() {
+			context.restore();
 			input_fields.empty();
 			context.clearRect(0,0, 500, 500); 
+			context.save();
 			context.beginPath();			
 			$("#canvas_code").empty();
 			$("#canvas_code").css("display", "inline");
@@ -46,6 +49,12 @@ function setupCanvas() {
 		$("#rect").click(function() {
 			var input_array = ["x", "y", "width", "height"];
 			drawPath("rect", input_array, input_fields, context);
+		});
+		
+		// Canvas code
+		$("#my_code").click(function() {
+			var input_array = ["code"];
+			drawPath("my_code", input_array, input_fields, context);
 		});
 
 		// Choosing between stroke and fill options

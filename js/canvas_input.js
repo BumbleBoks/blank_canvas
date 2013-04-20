@@ -38,13 +38,17 @@ function drawPath(pathname, input_array, input_fields, context)
 			code_html = canvasCodeForRect(input_value_array, options);
 			break;
 			
+		case "my_code":
+			code_html = canvasCodeForCode(input_value_array, options);
+			break;
+			
 		default:
 			console.log("path name not supported");
 			break;
 
 		}
 
-		code_html = "context.beginPath();<br/>" + code_html;		 
+		code_html = "context.beginPath();<br>" + code_html;		 
 		codeFromHtmlToJs(context, code_html, 0);
 		
 		addFieldForSavingCode (input_fields, context, code_html)		

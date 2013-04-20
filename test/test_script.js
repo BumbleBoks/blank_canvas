@@ -500,10 +500,10 @@ function pickAColorTest (output) {
 		output += outputMsgAsLine("old values are retained when x is clicked");
 	}	
 	
-	$("xbutton").click();
+	$("#xbutton").click();
 	
 	$("#arc").click();
-	enterArcForm(250, 150, 25, 75, 135, 1);
+	enterArcForm(250, 150, 250, 150, 25, 75, 135, 1);
 	
 	$("#stroke_button").click();
 	$("#draw").click();
