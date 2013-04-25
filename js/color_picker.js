@@ -15,7 +15,8 @@ var makeColor = function(r, g, b, a) {
 
 // makes a string rgb(r,g,b) 
 function colorStringFromColorStruct (color) {
-	var color_string = "rgb(" + color.r + "," + color.g + "," + color.b + ")";
+	var color_string = "rgba(" + color.r + "," + color.g + "," + color.b 
+		+ ',' + color.a + ")";
 	return color_string;
 }
 
@@ -23,7 +24,7 @@ function colorStringFromColorStruct (color) {
 function setColorSwatch (swatch, color) {
 	var trial_color = colorStringFromColorStruct(color);
 	swatch.css("background-color", trial_color);
-	swatch.css("opacity", color.a);	
+//	swatch.css("opacity", color.a);	
 }
 
 // closes the color popup window and resets the text of color picker button
@@ -33,10 +34,11 @@ function closeColorPickerPopUp (color_picker_popup, color_button) {
 }
 
 //  popup to select a color for drawing on canvas
-function popColorPickerPopUp(current_color) {
+function popColorPickerPopUp() {
 	var color_picker_popup = $("#color_picker_popup");
 	var color_button = $("#pick_color");
 	var color_swatch = $("#color_sample");
+	var current_color = color_button.data("color");
 	
 	// when popup is not open
 	if ( color_button.text() == pick_color_text)
@@ -62,7 +64,7 @@ function popColorPickerPopUp(current_color) {
 		// clicking x closes popup without saving color 
 		$("#xbutton").click(function() {
 			closeColorPickerPopUp(color_picker_popup, color_button);
-			return current_color;
+			return;
 		});
 		
 	}
@@ -72,7 +74,8 @@ function popColorPickerPopUp(current_color) {
 		// close popup, change button text and set color
 		closeColorPickerPopUp(color_picker_popup, color_button);
 		current_color = makeColor($("#R").val(), $("#G").val(), $("#B").val(), $("#A").val());
+		color_button.data("color", current_color);
 	}
 	
-	return current_color;
+	return;
 }

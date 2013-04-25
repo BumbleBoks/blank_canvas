@@ -88,6 +88,11 @@
     left: 600px;
     border: 1px solid #999;
     background-color: white; }
+  #index #code {
+    background-color: lemonchiffon;
+    color: maroon;
+    font: 100% "Courier New", Courier, monospace;
+    overflow: scroll; }
   #index #canvas_code {
     position: fixed;
     background-color: black;

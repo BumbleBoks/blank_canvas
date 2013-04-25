@@ -112,6 +112,13 @@ $y_offset: 100px;
 		background-color: white;
 	}
 	
+	#code {
+		background-color: lemonchiffon;
+		color: maroon;
+		font: 100% "Courier New", Courier, monospace;
+		overflow: scroll;		
+	}
+	
 	#canvas_code {
 		position: fixed;
 		background-color: black;

@@ -10,9 +10,8 @@ function codeFromHtmlToJs(context, html_display_code, save_flag) {
 	var js_code = "";
 	if (save_flag == 1) {
 		js_code = "context.clearRect(0,0, 500, 500);" 
-			+ "context.beginPath();";		
 	}
-	js_code += html_display_code.replace(/<br\/>/g, '');
+	js_code += html_display_code.replace(/<br>/g, '');
 	eval(js_code);	
 }
 // adds new piece of code to existing saved code, clears the canvas
@@ -41,9 +40,17 @@ function setInputFields (input_fields, input_name_array) {
 	if (input_name_array.length > 0) {
 		for (var i=0; i < input_name_array.length; i++) {
 			input_name = input_name_array[i];
-			input_fields.append(input_name + ": ");
-			input_fields.append('<input type="text" id=' + input_name
-				+ '> <br>');					
+			
+			if (input_name === "code") {
+				input_fields.append(input_name + "\n(use context for canvas context)<br>");
+				input_fields.append('<textarea id=' + input_name + 
+					' rows="20" cols="50"></textarea><br>')
+			} else {
+				input_fields.append(input_name + ": ");
+				input_fields.append('<input type="text" id=' + input_name
+						+ '> <br>');									
+			}
+			
 		}
 	}
 }
@@ -62,7 +69,7 @@ function getInputValues (input_name_array) {
 	if (input_name_array.length > 0) {	
 		for (var i=0; i < input_name_array.length; i++) {
 			input_values_array[input_name_array[i]] = 
-				parseInt($("#"+input_name_array[i]).val());
+				$("#"+input_name_array[i]).val();
 		}
 	}
 	
@@ -74,7 +81,6 @@ function getInputValues (input_name_array) {
 function addFieldForSavingCode (input_fields, context,code_html) {
 	if ($("#"+save_button_id).length != 0 )
 	{
-		// $("#"+save_button_id).parent().removeChild($("#"+save_button_id));
 		$("#"+save_button_id).remove();
 	}
 	 

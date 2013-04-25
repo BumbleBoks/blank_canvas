@@ -38,9 +38,11 @@ function enterBezierCurveForm (x1, y1, cp1x, cp1y, cp2x, cp2y, x2, y2) {
 	$("#y2").val(y2);
 }
 
-function enterArcForm (x, y, r, start_deg, end_deg, anticlockwise_bool) {
-	$("#x").val(x);
-	$("#y").val(y);
+function enterArcForm (x0, y0, xc, yc, r, start_deg, end_deg, anticlockwise_bool) {
+	$("#x0").val(x0);
+	$("#y0").val(y0);
+	$("#xc").val(xc);
+	$("#yc").val(yc);
 	$("#r").val(r);
 	$("#start_deg").val(start_deg);
 	$("#end_deg").val(end_deg);
@@ -200,7 +202,8 @@ function arcButtonClickTest(output) {
 	output += outputMsgAsLine("Clicking arc button");
 
 	$("#arc").click();
-	if (($("#x")[0] === undefined) || ($("#y")[0] === undefined )
+	if (($("#x0")[0] === undefined) || ($("#y0")[0] === undefined )
+		|| ($("#xc")[0] === undefined) || ($("#yc")[0] === undefined )
 		|| ($("#r")[0] === undefined) || ($("#start_deg")[0] === undefined) 
 		|| ($("#end_deg")[0] === undefined) || ($("#anticlockwise_bool")[0] === undefined) ) {
 			output += outputMsgAsLine("TEST FAILED: Arc click failed - no input fields"); 
@@ -208,8 +211,10 @@ function arcButtonClickTest(output) {
 	} else {
 		output += outputMsgAsLine("Arc click produces form input fields");
 	}
-	if (($(":contains('x')").length === 0) 
-		|| ($(":contains('y')").length === 0) 
+	if (($(":contains('x0')").length === 0) 
+		|| ($(":contains('y0')").length === 0) 
+		|| ($(":contains('xc')").length === 0) 
+		|| ($(":contains('yc')").length === 0) 
 		|| ($(":contains('r')").length === 0) 
 		|| ($(":contains('start_deg')").length === 0) 
 		|| ($(":contains('end_deg')").length === 0) 
@@ -220,7 +225,7 @@ function arcButtonClickTest(output) {
 		output += outputMsgAsLine("Arc click produces form input labels");
 	} 
 	
-	enterArcForm(100, 200, 50, 30, 60, 0);
+	enterArcForm(100,200,100, 200, 50, 30, 60, 0);
 	
 	$("#draw").click();
 	$("#save").click();
@@ -469,7 +474,52 @@ function pickAColorTest (output) {
 		return output;
 	} else {
 		output += outputMsgAsLine("new values were set correctly");
+	}	
+	
+	$("#R").val(150);
+	$("#G").val(122);
+	$("#B").val(72);
+	$("#A").val(0.7);
+	
+	$("#xbutton").click();
+	if ($("#pick_color").text() != "Pick a color")
+	{
+		output += outputMsgAsLine("TEST FAILED: button text should change when x is clicked");
+			return output;
+		} else {
+			output += outputMsgAsLine("button text changes when x is clicked");	
+		
+	}
+	
+	$("#pick_color").click();
+	if ( $("#R").val() != 50 || $("#G").val() != 100 || $("#B").val() != 200 || $("#A").val() != 0.6 )
+	{
+		output += outputMsgAsLine("TEST FAILED: old values are not retained when x is clicked");
+		return output;
+	} else {
+		output += outputMsgAsLine("old values are retained when x is clicked");
+	}	
+	
+	$("#xbutton").click();
+	
+	$("#arc").click();
+	enterArcForm(250, 150, 250, 150, 25, 75, 135, 1);
+	
+	$("#stroke_button").click();
+	$("#draw").click();
+	$("#save").click();
+	
+	var htmlText = $("#canvas_code").text();
+	var colorStrokeText = 'context.strokeStyle = "rgba(50,100,200,0.6)";'
+	
+	if (htmlText.indexOf(colorStrokeText) == -1) {
+		output += outputMsgAsLine("TEST FAILED: correct code for color/stroke is not generated");
+		return output;
+	}
+	else {
+		output += outputMsgAsLine("code for color/stroke is generated");
 	}		
+			
 	return output;
 }
 
