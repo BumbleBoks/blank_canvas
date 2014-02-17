@@ -10,6 +10,7 @@ function setupCanvas() {
 		
 		context.save();
 		context.beginPath();
+		addUserInteractionToCanvas($("#canvas_playground"))
 		
 		$("#refresh_canvas").click(function() {
 			context.restore();

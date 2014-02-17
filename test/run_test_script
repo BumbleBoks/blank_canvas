@@ -1,7 +1,7 @@
 # file to open browser and test display
 # run this file using "perl -w run_test_script" in terminal window from test directory
 
-#! /ur/bin/perl
+#! /usr/bin/perl
 
 $file = "../index.html";
 $file_test = "index_test.html";
@@ -24,5 +24,6 @@ while (<$original>) {
 close $original;
 close $saved;
 
-!system "open -a Firefox index_test.html" or die "Could not open page in Firefox!";
+# !system "open -a Firefox index_test.html" or die "Could not open page in Firefox!";
+!system "open -a Firefox $file_test" or die "Could not open page in Firefox!";
 
